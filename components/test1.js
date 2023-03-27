@@ -1,15 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Pressable } from 'react-native';
 import {  SafeAreaView} from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Image} from 'react-native';
-import { useCallback } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons'; 
 import GroupButton from '../assets/svg/3button.svg';
-function Test221() {
+import DuocWhite from '../assets/svg/duoc_white.svg'
+import KhongDuocWhite from '../assets/svg/khongduoc_white.svg'
+import ProgessO from '../assets/svg/progess_o.svg';
+import ProgessV from '../assets/svg/progess_v.svg';
+import ProgessX from '../assets/svg/progess_x.svg';
+function Test221({navigation}) {
+  const [pressed1, setPressed1] = useState(false);
+  const [pressed2, setPressed2] = useState(false);
   // lấy font SVN - Gotham
   const [fontsLoaded] = useFonts({
     'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
@@ -36,105 +46,141 @@ function Test221() {
 
   return (
       <View style={styles.container}>
-        <ImageBackground source={require('../assets/images/page1.png')} style={styles.bg}>
-          <View style={{flex: 1}}>
-          <SafeAreaView style={{
-          flex: 1.4, 
-          flexDirection: 'row', 
-          justifyContent: 'center',    
-          }}>
-          <LinearGradient colors={['#0E470E', '#20680D', '#2E820D', '#13500E', 'transparent']} style={{flex: 1, position: 'absolute', top: 0, bottom: 0, left:0, right: 0}}>
-            <View style={{flexDirection: 'column', alignItems:'center'}}>
-            <View style={{flexDirection: 'row', alignItems: 'center', paddingTop: 10}}>
-              <AntDesign name="left" size={14} color="white" />
-              <Text style={{alignSelf: 'center', fontFamily:'svnGotham', color: 'white', fontSize: 14, paddingLeft: 10, paddingRight: 10}}>Trang 1/6</Text>
-              <AntDesign name="right" size={14} color="white" />
-            </View>
-            <Text style={{textAlign:'center', fontFamily:'svnBold', color: "#E8E276", fontSize: 25}}>TẾT BẬN RỘN{"\n"}
-                  CƠ-XƯƠNG-KHỚP CÓ KHOẺ {"\n"}
-                  ĐỂ CHU TOÀN? </Text>
-                  <Text style={styles.textTop}>Trăm công nghìn việc dịp cận Tết mà cơ thể nhức mỏi, </Text><Text style={styles.textTop}>làm sao chu toàn?</Text>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={styles.textTop}>Ngay lúc này, </Text>
-              <Text style={{textAlign:'center', color: "#E8E276", fontFamily: 'svnBold'}}>hãy Kiểm tra Sức khoẻ Cơ-Xương-Khớp</Text>
-            </View>
-            <Text style={styles.textTop}>cùng Anlene để Tết này cả nhà vui khoẻ đón Tết,</Text>
-            <Text style={styles.textTop}>trọn vẹn niềm vui.</Text>
-          </View>
-            </LinearGradient>
+        <LinearGradient
+          colors={['#0E470E', '#20680D', '#2E820D', '#13500E']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 1}}
+          style={{flex: 1}}>
+            <SafeAreaView style={{flex: 1, paddingLeft: 20, paddingRight: 20}}>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'row', flex: 2, alignSelf:'center'}}>
+                    <View style={{flex: 1,flexDirection: 'row', justifyContent: 'flex-start', alignSelf: 'center'}}>
+                      <TouchableOpacity style={{paddingRight: 20}} onPress={() => navigation.navigate("HomePage")}>
+                        <Entypo name="chevron-thin-left" size={24} color="white" />
+                      </TouchableOpacity>
+                      
+                    </View>
+                    <View style={{flex: 1,flexDirection: 'row', justifyContent: 'flex-end', alignSelf:'center'}}>
+                      <AntDesign name="left" size={14} color="white" />
+                    </View>
+                </View>
+                <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignSelf: 'center'}}>  
+                    <Text style={[styles.textTop]}>Trang 2/6</Text>          
+                </View>
+                <View style={{flexDirection: 'row', flex: 2, justifyContent:'flex-start', alignItems:'center'}}>
+                    <View style={{flex: 1,}}>
+                        <AntDesign name="right" size={14} color="white" />
+                    </View>
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
+                      <TouchableOpacity style={{paddingRight: 20}}
+                        onPress={() => navigation.navigate("HomePage")}
+                      >
+                        <Entypo name="home" size={24} color="white" />
+                      </TouchableOpacity>
+                    </View>
+                </View>
+              </View>
+              <Text style={{fontSize: 19, fontFamily: 'svnBold', color: 'white', textAlign: 'center'}}>KIỂM TRA CƠ - XƯƠNG - KHỚP</Text>
+                <View style={{flex:1, width: '100%', backgroundColor: '#73A442', borderRadius: 12, flexDirection: 'row'}}>
+                  <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                  <View style={{flex: 1, backgroundColor: 'black'}}></View>
+                  <View style={{flex: 1, backgroundColor: 'white'}}></View>
+                  <View style={{flex: 1, backgroundColor: 'black'}}></View>
+                </View>
+                <Text style={{fontFamily: 'svnBold', fontSize: 26, textAlign: 'center', color:'yellow'}}>KIỂM TRA CƠ</Text>
+                <View style={{flex: 3}}>
+                  <Image style={{width: '100%', height: '100%', borderRadius: 16}} source={require('../assets/images/co.png')}></Image>
+                </View>
+                <Text style={[styles.textTop, {textAlign: 'center'}]}>
+                Đứng rộng chân, lưng thẳng đứng,{'\n'}
+                tay đưa ra sau và đan vào nhau
+                </Text>
+                <View style={{flex: 2}}>
+                  <View style={{flex: 1, flexDirection: 'row'}}>
+                  <LinearGradient
+                      colors={[pressed1 ? 'transparent' : '#FFC200', pressed1 ? 'transparent' : '#FFFCAB', '#ECD24A', '#ECD24A', pressed1 ? 'transparent' : '#FFC200']}
+                      start={{ x: 0.0, y: 1.0 }} end={{ x: 1.0, y: 1.0 }}
+                      style={styles.grediant}
+                  >
+                      <Pressable style={styles.buttonContainer}
+                          onPress = {()=> {navigation.navigate('TestPage2'); setPressed1(false); setPressed2(true); console.log(pressed1, pressed2);}}
+                      >
+                          <DuocWhite></DuocWhite>
+                      </Pressable>
+                  </LinearGradient>
+
+                  <View style={{ flex: 1 }} />
+                  <LinearGradient
+                      colors={[pressed2 ? 'transparent' : '#FFC200', pressed2 ? 'transparent' : '#FFFCAB', '#ECD24A', '#ECD24A', pressed2 ? 'transparent' : '#FFC200']}
+                      start={{ x: 0.0, y: 1.0 }} end={{ x: 1.0, y: 1.0 }}
+                      style={styles.grediant}
+                  >
+                      <Pressable style={styles.buttonContainer}
+                          onPress = {()=> {navigation.navigate('TestPage2'); setPressed1(true); setPressed2(false); console.log(pressed1, pressed2);}}
+                      >
+                          <KhongDuocWhite></KhongDuocWhite>
+                      </Pressable>
+                  </LinearGradient>
+                    
+                  
+                  </View>
+                  <View style={{flex: 1, flexDirection: 'row'}}></View>
+                </View>
             </SafeAreaView>
-        
-        <View style={{flex: 2.6, justifyContent: 'flex-end'}}>
-          <LinearGradient
-                colors={['transparent', '#0E470E', '#20680D', '#2E820D', '#13500E', ]}
-                start={{ x: 1.0, y: 0.0 }} end={{ x: 1.0, y: 1.0 }}
-                style={{  }}
-              >
-              <LinearGradient
-                colors={['#FFC200', '#FFFCAB', '#ECD24A', '#ECD24A', '#FFC200']}
-                start={{ x: 0.0, y: 1.0 }} end={{ x: 1.0, y: 1.0 }}
-                style={styles.grediant}
-              >
-                <TouchableOpacity style={styles.buttonContainer}>
-                    <Text style={styles.buttonText}>
-                        KIỂM TRA NGAY
-                    </Text>
-                </TouchableOpacity>
-              </LinearGradient>
-              <View style={{padding:5}}></View>
-              <GroupButton style={{alignSelf: 'center'}}></GroupButton>
-              <View style={{alignItems:'center'}}>
-                <Text style={styles.TextBottom}>Bài kiểm tra Cơ, Xương, Khớp này được phát triển bởi đội ngũ Anlene</Text>
-                <Text style={[styles.TextBottom, {marginLeft: 20, marginRight: 20, paddingBottom: 5}]}>Lưu ý: Bài kiểm tra không dành cho đối tượng đang bị chấn thương hoặc có bệnh lý về cơ, xương, khớp hoặc tiểu đường</Text>
-              </View>  
-            </LinearGradient>
-        </View>
-        </View>
-        </ImageBackground>
-        
-    </View>
+        </LinearGradient>
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column'
+    backgroundColor: 'skyblue'
   },
   textTop: {
-    textAlign:'center', color: '#ffffff', fontFamily: 'svnGotham', fontSize: 14
+    textAlign:'center', color: '#ffffff', fontFamily: 'svnGotham', fontSize: 14,
+    
   },
-  TextBottom: {
-    textAlign:'center', color: '#ffffff', fontFamily: 'svnLightItalic', fontSize: 14
+  imageContainer: {
+    padding: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  bg: {
-    flex: 1
+  image: {
+    width: 35,
+    height: 35,
   },
-  kiemTraNgay: {fontFamily: 'svnGotham', fontSize: 30, textAlign: 'center', color: 'white', paddingLeft: 30, paddingRight: 30, paddingTop: 4, paddingBottom: 4,
-  borderColor: '#ECD24A', borderWidth: 2, borderRadius: 30
+  line: {
+    flex: 1, // Thêm thuộc tính này để giãn đường kẻ ra cho tới rìa bên phải của thành phần cha
+    borderTopWidth: 2 ,
+    borderStyle: 'dashed',
+    borderTopColor: 'white',
+    alignItems: 'center', // Thêm thuộc tính này để căn giữa đường kẻ theo chiều ngang,
+    height: 14
+  },
+  textTop: {
+    textAlign:'center', color: '#ffffff', fontFamily: 'svnGotham', fontSize: 14,
+  },
+  choose: {
+    flex: 1, backgroundColor: '#71A162',
+    borderRadius: 11,
+    paddingTop: 20,
+    paddingBottom: 20,
+    
   },
   grediant: {
     justifyContent: 'center',
     alignSelf: 'center',
-    borderRadius: 30,
+    borderRadius: 10,
+    overflow: 'hidden',
   },
   buttonContainer: {
     alignSelf: 'center',
     justifyContent: 'center',
-    backgroundColor: '#B70002',
-    margin: 3,
-    borderRadius: 30,
+    backgroundColor: '#71A162',
+    margin: 2,
+    borderRadius: 10,
   },
-  buttonText: {
-    textAlign: 'center',
-    color: 'white',
-    alignSelf: 'center',
-    fontFamily: 'svnGotham',
-    fontSize: 28,
-    paddingLeft: 20, paddingRight: 20,
-    paddingTop:4, paddingBottom:4
-  }
-
 });
 
 
