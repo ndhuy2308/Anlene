@@ -5,8 +5,7 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Test222 from './components/test2.js';
-import Test221 from './components/test1.js';
-import Test223 from './components/test.js';
+import Test221 from './components/test.js';
 const Stack = createNativeStackNavigator();
 
 function App() {
