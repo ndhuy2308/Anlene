@@ -86,7 +86,7 @@ const Test222 = ({navigation}) => {
                                 style={styles.grediant}
                             >
                                 <TouchableOpacity style={styles.buttonContainer}
-                                    onPress = {()=> navigation.navigate('TestPage2')}
+                                    onPress = {()=> navigation.navigate('TestPage4')}
                                 >
                                     <Text style={styles.buttonText}>
                                         KIỂM TRA NGAY
