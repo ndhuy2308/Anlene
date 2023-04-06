@@ -14,6 +14,7 @@ import { Entypo } from '@expo/vector-icons';
 import DuocWhite from '../assets/svg/duoc_white.svg';
 import KhongDuocWhite from '../assets/svg/khongduoc_white.svg';
 import Images from "../assets/images";
+import TextGradient from './TextGradient';
 const image1 = require('../assets/images/o.png');
 const image2 = require('../assets/images/x.png');
 const image3 = require('../assets/images/3.png');
@@ -115,7 +116,7 @@ function Test221({navigation}) {
                 </View>
  
                 </View>
-                <Text style={{fontFamily: 'svnBold', fontSize: 20, textAlign: 'center', color:'yellow'}}>KIỂM TRA CƠ</Text>
+                <TextGradient text="KIỂM TRA CƠ" style={{fontSize: 20, fontFamily: 'svnBold', textAlign: 'center'}} />
                 <View style={{flex: 5}}>
                   <Image style={{width: '100%', height: '100%', borderRadius: 16}} source={require('../assets/images/test-1.png')} />
                 </View>
@@ -139,7 +140,7 @@ function Test221({navigation}) {
                    <Pressable style={{paddingLeft: 20}}>
                    <LinearGradient start={[0, 0.5]}
                     end={[1, 0.5]}
-                    colors={['#FFC200', '#FFFCAB', '#ECD24A', '#ECD24A', '#FFC200']}
+                    colors={['transparent', 'transparent']}
                     style={{borderRadius: 5}}>
                       <View style={styles.circleGradient}>
                         <KhongDuocWhite style={styles.visit}></KhongDuocWhite>

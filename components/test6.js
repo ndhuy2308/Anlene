@@ -1,0 +1,127 @@
+import { StatusBar } from 'expo-status-bar';
+import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Pressable, ScrollView } from 'react-native';
+import {  SafeAreaView} from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {Image} from 'react-native';
+import { useCallback, useState, useEffect } from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { AntDesign } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons'; 
+import DuocWhite from '../assets/svg/duoc_white.svg';
+import KhongDuocWhite from '../assets/svg/khongduoc_white.svg';
+import Images from "../assets/images";
+import TextGradient from './TextGradient';
+const image1 = require('../assets/images/o.png');
+const image2 = require('../assets/images/x.png');
+const image3 = require('../assets/images/3.png');
+const image4 = require('../assets/images/4.png');
+
+function Test221({navigation}) {
+  const [pressed1, setPressed1] = useState(false);
+  const [pressed2, setPressed2] = useState(false);
+  const [index, setIndex] = useState(5);
+  // lấy font SVN - Gotham
+  const [fontsLoaded] = useFonts({
+    'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
+    'svnLight': require('../assets/fonts/svn_gotham_light.ttf'),
+    'svnLightItalic': require('../assets/fonts/svn_gotham_light_italic.otf'),
+    'svnGotham': require('../assets/fonts/svn_gotham.otf'),
+  });
+  
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+  else{
+    SplashScreen.hideAsync();
+  }
+
+  return (
+      <ScrollView style={styles.container}>
+        <LinearGradient
+          colors={['#0E470E', '#20680D', '#2E820D', '#13500E']}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 1}}
+          style={{flex: 1}}>
+            <SafeAreaView style={{flex: 1, paddingLeft: 20, paddingRight: 20}}>
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{flexDirection: 'row', flex: 2, alignSelf:'center'}}>
+                        <View style={{flex: 1,flexDirection: 'row', justifyContent: 'flex-start', alignSelf: 'center'}}>
+                        <TouchableOpacity style={{paddingRight: 20}} onPress={() => navigation.navigate("TestPage5")}>
+                            <Entypo name="chevron-thin-left" size={24} color="white" />
+                        </TouchableOpacity>
+                        
+                        </View>
+                        <View style={{flex: 1,flexDirection: 'row', justifyContent: 'flex-end', alignSelf:'center'}}>
+                        <AntDesign name="left" size={14} color="white" />
+                        </View>
+                    </View>
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignSelf: 'center'}}>  
+                            <Text style={[styles.textTop]}>Trang 6/6</Text>          
+                    </View>
+                    <View style={{flexDirection: 'row', flex: 2, justifyContent:'flex-start', alignItems:'center'}}>
+                        <View style={{flex: 1,}}>
+                            <AntDesign name="right" size={14} color="white" />
+                        </View>
+                        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center'}}>
+                        <TouchableOpacity style={{paddingRight: 20}}
+                            onPress={() => navigation.navigate("HomePage")}
+                        >
+                            <Entypo name="home" size={24} color="white" />
+                        </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+                <Image source={require('../assets/images/logo.png')} style={{width: 116.6, height: 28.4, resizeMode: 'contain', alignSelf: 'center', marginBottom: 10}}></Image>
+                <Text style={{fontFamily: 'svnBold', color: '#ECD24A', fontSize: 26,  textAlign: 'center'}}>THÔNG TIN SẢN PHẨM</Text>
+                <Text style={{fontFamily: 'svnBold', color: '#ECD24A', fontSize: 22,  textAlign: 'center'}}>SỮA ANLENE 3 KHỎE</Text>
+                <Image source={require('../assets/images/group-page6.png')} style={{alignSelf: 'center', marginBottom: 10}}></Image>
+                <Text style={{flexShrink: 1, textAlign: 'center', fontFamily: 'svnGotham', fontSize: 14, color:'white'}}>Uống 2 ly Anlene mỗi ngày để bổ sung dinh{'\n'}dưỡng, tăng cường đề kháng đồng thời duy trì {'\n'}thói quen tập thể dục mỗi ngày để giúp hệ {'\n'}Cơ-Xương-Khớp chắc khoẻ, thoải mái tận {'\n'}hưởng cuộc sống năng động, chẳng ngại
+                {'\n'}“rào cản” tuổi tác.</Text>
+                <Image source={require('../assets/images/xuong-chac.png')} style={{alignSelf: 'center', marginBottom: 15}}></Image>
+                <Image source={require('../assets/images/co-khoe.png')} style={{alignSelf: 'center', marginBottom: 15}}></Image>
+                <Image source={require('../assets/images/khop-linh-hoat.png')} style={{alignSelf: 'center', marginBottom: 20}}></Image>
+            </SafeAreaView>
+        </LinearGradient>
+      </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'skyblue'
+  },
+  textTop: {
+    textAlign:'center', color: '#ffffff', fontFamily: 'svnGotham', fontSize: 14
+  },
+  buttonContainer: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#B70002',
+    margin: 3,
+    borderRadius: 30,
+    },
+    buttonText: {
+    textAlign: 'center',
+    color: 'white',
+    alignSelf: 'center',
+    fontFamily: 'svnGotham',
+    fontSize: 28,
+    paddingLeft: 22, paddingRight: 22,
+    paddingTop:4, paddingBottom:4
+    },
+});
+
+
+
+export default Test221;

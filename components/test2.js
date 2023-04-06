@@ -10,6 +10,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons'; 
 import GroupButton from '../assets/svg/3button.svg';
 import Logo from '../assets/svg/logo.svg';
+import TextGradient from './TextGradient';
 
 const Test222 = ({navigation}) => {
 
@@ -59,9 +60,9 @@ const Test222 = ({navigation}) => {
                                         </View>
                                     </View>
                                 </View>
-                                <Text style={{textAlign:'center', fontFamily:'svnBold', color: "#E8E276", fontSize: 25, paddingTop: 10}}>TẾT BẬN RỘN{"\n"}
-                                    CƠ-XƯƠNG-KHỚP CÓ KHOẺ {"\n"}    
-                                    ĐỂ CHU TOÀN? </Text>
+                                <TextGradient text="TẾT BẬN RỘN" style={{fontSize: 22, fontFamily: 'svnBold'}}/>
+                                <TextGradient text="CƠ-XƯƠNG-KHỚP CÓ KHOẺ" style={{fontSize: 22, fontFamily: 'svnBold'}}/>
+                                <TextGradient text="ĐỂ CHU TOÀN?" style={{fontSize: 22, fontFamily: 'svnBold'}}/>
                                 <Text style={styles.textTop}>Trăm công nghìn việc dịp cận Tết mà cơ thể nhức mỏi, </Text><Text style={styles.textTop}>làm sao chu toàn?</Text>
                                 <View style={{flexDirection: 'row'}}>
                                     <Text style={styles.textTop}>Ngay lúc này, </Text>
@@ -86,7 +87,7 @@ const Test222 = ({navigation}) => {
                                 style={styles.grediant}
                             >
                                 <TouchableOpacity style={styles.buttonContainer}
-                                    onPress = {()=> navigation.navigate('TestPage4')}
+                                    onPress = {()=> navigation.navigate('TestPage6')}
                                 >
                                     <Text style={styles.buttonText}>
                                         KIỂM TRA NGAY
@@ -121,22 +122,22 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: 30,
       },
-      buttonContainer: {
-        alignSelf: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#B70002',
-        margin: 3,
-        borderRadius: 30,
-      },
-      buttonText: {
-        textAlign: 'center',
-        color: 'white',
-        alignSelf: 'center',
-        fontFamily: 'svnGotham',
-        fontSize: 28,
-        paddingLeft: 22, paddingRight: 22,
-        paddingTop:4, paddingBottom:4
-      },
+    buttonContainer: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#B70002',
+    margin: 3,
+    borderRadius: 30,
+    },
+    buttonText: {
+    textAlign: 'center',
+    color: 'white',
+    alignSelf: 'center',
+    fontFamily: 'svnGotham',
+    fontSize: 28,
+    paddingLeft: 22, paddingRight: 22,
+    paddingTop:4, paddingBottom:4
+    },
       
 });
 export default Test222;
