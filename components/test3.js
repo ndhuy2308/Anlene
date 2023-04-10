@@ -10,14 +10,43 @@ import { useCallback, useState, useEffect, onChangeText } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
+import formCheck from './formCheck';
 
 function Test223({navigation}) {
-    const FullNameError= '';
-    const PhoneNumberError = '';
-    const EmailError = '';
-    const [checked, setChecked] = useState(true);
+    const [Name, setName] = useState('');
+    const [Number, setNumber] = useState('');
+    const [isValidName, setValidName] = useState(true);
+    const [isValidNumber, setValidNumber] = useState(true);
+
+    const verifyName = (Name) => {
+        if(!Name) return false;
+        return true;
+        
+    }
+
+    const verifyNumber = (Number) => {
+        if(!Number) return false;
+        return true;
+        
+    }
+
+    const [checked, setChecked] = useState(false);
     const checkedImg = require('../assets/images/checked.png');
     const uncheckImg = require('../assets/images/uncheck.png');
+
+    const [imageSource, setImageSource] = useState(require('../assets/images/uncheck.png'));
+    const [isChecked, setisChecked] = useState(true);
+    
+    const handlePress = () => {
+        if (isChecked) {
+          setImageSource(require('../assets/images/checked.png'));
+        } else {
+          setImageSource(require('../assets/images/uncheck.png'));
+        }
+        setisChecked(!isChecked);
+      };
+
+
     // lấy font SVN - Gotham
     const [fontsLoaded] = useFonts({
         'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
@@ -88,17 +117,27 @@ function Test223({navigation}) {
                         <Text style={{textAlign: 'center', fontFamily: 'svnBold', color: 'white', fontSize: 14, lineHeight: 22, textAlign: 'center'}}>Tuy rằng có vẻ bạn đang có đề kháng tốt nhưng cần {'\n'}quan tâm đến hệ vận động nhiều hơn nhé, {'\n'}bởi sau tuổi 40,...</Text>
                         <Text style={{textAlign: 'center', fontFamily: 'svnBold', color: 'white', fontSize: 17, lineHeight: 25, textAlign: 'center'}}>Điền thông tin bên dưới để xem đầy đủ{'\n'}kết quả và nhận ngay Voucher ưu đãi lên {'\n'}đến 100.000đ từ Anlene.</Text>
                         <Text style={[styles.textInput, {marginTop: 5}]}>Họ tên:</Text>
-                        <TextInput placeholder="Nhập họ và tên" style={styles.input} />
-                        <Text style={styles.textInputError}>{FullNameError}</Text>
+                        <TextInput placeholder="Nhập họ và tên" style={styles.input} 
+                        onChangeText={Name => {
+                            setName(Name);
+                            const isValid = verifyName(Name);
+                            isValid? setValidName(true) : setValidName(false);
+                        }}/>
+                        <Text style={styles.textInputError}>{isValidName? '' : 'Vui lòng nhập họ và tên'}</Text>
                         <Text style={styles.textInput}>Số điện thoại:</Text>
-                        <TextInput placeholder="Nhập số điện thoại" style={styles.input} />
-                        <Text style={styles.textInputError}>{PhoneNumberError}</Text>
+                        <TextInput placeholder="Nhập số điện thoại" style={styles.input} 
+                        onChangeText={Number => {
+                            setName(Number);
+                            const isValid = verifyNumber(Number);
+                            isValid? setValidNumber(true) : setValidNumber(false);
+                        }}/>
+                        <Text style={styles.textInputError}>{isValidNumber? '' : 'Vui lòng nhập số điện thoại'}</Text>
                         <Text style={styles.textInput}>Email:</Text>
                         <TextInput placeholder="Nhập email" style={styles.input} />
-                        <Text style={styles.textInputError}>{EmailError}</Text>
-                        <Pressable>
+                        <Text style={styles.textInputError}></Text>
+                        <Pressable onPress={handlePress}>
                             <View style={{flexDirection: 'row'}}>
-                                <Image source={require('../assets/images/checked.png')}></Image>
+                                <Image source={imageSource}></Image>
                                 <View style={{flexShrink: 1}}>
                                     <Text style={{color: 'white', fontFamily: 'svnGotham', fontSize: 11}}>Tôi đồng ý để Anlene Vietnam liên hệ trong bất kỳ chương trình quảng cáo sản phẩm hay khuyến mãi nào</Text>
                                     <Text style={{color: 'white', fontFamily: 'svnLightItalic', fontSize: 11}}>Bằng cách điền bảng thông tin này, tôi đồng ý với việc thông tin của mình để xử lý dựa trên chính sách bảo mật của Anlene</Text>
@@ -107,7 +146,7 @@ function Test223({navigation}) {
                             </View>
                         </Pressable>
                         <View style={{flex: 1, justifyContent: 'center'}}>
-                            <TouchableOpacity style={styles.buttonContainer}>
+                            <TouchableOpacity style={styles.buttonContainer} onPress={()=> {formCheck; navigation.navigate('TestPage4')}}>
                                 <Text style={styles.buttonText}>HOÀN THÀNH</Text>
                             </TouchableOpacity>
                         </View>

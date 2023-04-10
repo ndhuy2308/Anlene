@@ -16,14 +16,18 @@ import KhongDuocWhite from '../assets/svg/khongduoc_white.svg';
 import Images from "../assets/images";
 import TextGradient from './TextGradient';
 const image1 = require('../assets/images/o.png');
-const image2 = require('../assets/images/x.png');
+const image2 = require('../assets/images/2.png');
+const image5 = require('../assets/images/v.png');
+const image6 = require('../assets/images/x.png');
 const image3 = require('../assets/images/3.png');
 const image4 = require('../assets/images/4.png');
 
 function Test221({navigation}) {
   const [pressed1, setPressed1] = useState(false);
   const [pressed2, setPressed2] = useState(false);
-  const [index, setIndex] = useState(5);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [step, setStep] = useState('1');
+  // 1 - đang chọn, 2 - được, 3 - không được, 4 - hình ảnh 
   // lấy font SVN - Gotham
   const [fontsLoaded] = useFonts({
     'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
@@ -93,7 +97,7 @@ function Test221({navigation}) {
                     <View style={{borderTopWidth: 3, borderTopColor: 'white', borderStyle: 'dashed', width: '80%', marginLeft: 40, zIndex: 1, elevation: 1}} />
                   </View>
                   <View style={{height: 30, width: '100%', justifyContent:'center', position: 'absolute'}}>
-                    <View style={{borderTopWidth: 3, borderTopColor: 'white', width: "0%", marginLeft: 40, zIndex: 1, elevation: 1}} />
+                    <View style={{borderTopWidth: 3, borderTopColor: 'white', width: step === 1? '0%' : (step === 2? '25%' : (step === 3 ? '50%': '80%')), marginLeft: 40, zIndex: 1, elevation: 1}} />
                   </View> 
                   
                   
@@ -116,9 +120,13 @@ function Test221({navigation}) {
                 </View>
  
                 </View>
-                <TextGradient text="KIỂM TRA CƠ" style={{fontSize: 20, fontFamily: 'svnBold', textAlign: 'center'}} />
-                <View style={{flex: 5}}>
-                  <Image style={{width: '100%', height: '100%', borderRadius: 16}} source={require('../assets/images/test-1.png')} />
+                <TextGradient
+                  text={step === '1' ? 'Cơ' : step === '2' ? 'Xương' : ''}
+                  style={{ fontSize: 20, fontFamily: 'svnBold', textAlign: 'center' }}
+                />
+                <View style={{position: 'relative', width: '100%', height: '100%', borderRadius: 16, flex: 5}}>
+                  <Image style={{width: '100%', height: '100%', borderRadius: 16, borderColor: activeIndex === 1? '#73A442' : (activeIndex === 2 ? '#C6463A' : null) , borderWidth: 3}} source={step === 1? Images.imageCo : (step === 2? Images.imageXuong : (step === 3 ? Images.imageKhop : Images.imageDeKhang) ) } />
+                  <Image style={{position: 'absolute', top: -10, right: -12, width: 48, height: 48}} source={activeIndex === 1 ? image5 : (activeIndex === 2 ? image6 : null)} />
                 </View>
                 <Text style={[styles.textTop, {textAlign: 'center', paddingTop: 10}]}>
                 Đứng rộng chân, lưng thẳng đứng,{'\n'}
@@ -126,34 +134,66 @@ function Test221({navigation}) {
                 </Text>
                 <View style={{flex: 2}}>
                   <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', paddingTop: 15}}>
-                   <Pressable>
-                   <LinearGradient start={[0, 0.5]}
-                    end={[1, 0.5]}
-                    colors={['#FFC200', '#FFFCAB', '#ECD24A', '#ECD24A', '#FFC200']}
-                    style={{borderRadius: 5}}>
-                      <View style={styles.circleGradient}>
-                        <DuocWhite style={styles.visit}></DuocWhite>
-                      </View>
-                    </LinearGradient>
-                   </Pressable>
+                  <Pressable
+                    onPress={() => {
+                      step <= 3 ? setActiveIndex(1) : null;
+                      step <= 4 ? setTimeout(() => {setActiveIndex(0), setStep(step + 1)}, 2000): null;
+                    }}
+                    style={{ paddingLeft: 20 }}
+                  >
+                      <LinearGradient
+                        start={[0, 0.5]}
+                        end={[1, 0.5]}
+                        colors={[
+                          activeIndex === 1 ? '#FFC200' : 'transparent',
+                          activeIndex === 1 ? '#FFFCAB' : 'transparent',
+                          activeIndex === 1 ? '#ECD24A' : 'transparent',
+                          activeIndex === 1 ? '#ECD24A' : 'transparent',
+                          activeIndex === 1 ? '#FFC200' : 'transparent',
+                        ]}
+                        style={{ borderRadius: 5 }}
+                      >
+                        <View style={styles.circleGradient}>
+                          <DuocWhite style={styles.visit}></DuocWhite>
+                        </View>
+                      </LinearGradient>
+                    </Pressable>
 
-                   <Pressable style={{paddingLeft: 20}}>
-                   <LinearGradient start={[0, 0.5]}
-                    end={[1, 0.5]}
-                    colors={['transparent', 'transparent']}
-                    style={{borderRadius: 5}}>
-                      <View style={styles.circleGradient}>
-                        <KhongDuocWhite style={styles.visit}></KhongDuocWhite>
-                      </View>
-                    </LinearGradient>
-                   </Pressable>
+                    <Pressable
+                    onPress={() => {
+                      step <= 3 ? setActiveIndex(2) : null;
+                      step <= 4 ? setTimeout(() => {setActiveIndex(0), setStep(step + 1)}, 2000): null;
+                      
+                       
+                      //setTimeout(() => setActiveIndex(0), 1000);
+                    }}
+                    style={{ paddingLeft: 20 }}
+                  >
+                      <LinearGradient
+                        start={[0, 0.5]}
+                        end={[1, 0.5]}
+                        colors={[
+                          activeIndex === 2 ? '#FFC200' : 'transparent',
+                          activeIndex === 2 ? '#FFFCAB' : 'transparent',
+                          activeIndex === 2 ? '#ECD24A' : 'transparent',
+                          activeIndex === 2 ? '#ECD24A' : 'transparent',
+                          activeIndex === 2 ? '#FFC200' : 'transparent',
+                        ]}
+                        style={{ borderRadius: 5 }}
+                      >
+                        <View style={styles.circleGradient}>
+                          <KhongDuocWhite style={styles.visit}></KhongDuocWhite>
+                        </View>
+                      </LinearGradient>
+                    </Pressable>
                   </View>
                 </View>
                 <View style={{flex: 2}}>
-                  <TouchableOpacity style={{alignSelf: 'center', width: '50%', backgroundColor: '#B8B8B8', paddingLeft: 30, paddingRight: 30, paddingTop: 10, paddingBottom: 10, borderRadius: 30}}>
+                  <TouchableOpacity style={{alignSelf: 'center', width: '50%', backgroundColor: '#B8B8B8', paddingLeft: 30, paddingRight: 30, paddingTop: 10, paddingBottom: 10, borderRadius: 30}}
+                  onPress={() => navigation.navigate('TestPage3')}>
                     <Text style={{textAlign: 'center', fontSize: 16, fontFamily: 'svnGotham', color: 'white'}}>XÁC NHẬN</Text>
                   </TouchableOpacity>
-                  <Text style={{textAlign: 'center', fontFamily: 'svnLightItalic', color: 'white'}}>*Lưu ý: Hãy dừng bài tập ngay nếu cảm thấy không thoải mái. {'\n'}Đảm bảo vị trí tập an toàn để không té ngã.</Text>
+                  <Text style={{textAlign: 'center', fontFamily: 'svnLightItalic', color: 'white'}}>{step}*Lưu ý: Hãy dừng bài tập ngay nếu cảm thấy không thoải mái. {'\n'}Đảm bảo vị trí tập an toàn để không té ngã.</Text>
                 </View>
             </SafeAreaView>
         </LinearGradient>
@@ -177,15 +217,12 @@ const styles = StyleSheet.create({
   imageProgess: {
     width: 30, height: 30
   },
-  visit: {
-    textAlign: "center",
-    backgroundColor: "#71A162",
-    fontSize: 14
-  },
+ 
   circleGradient: {
     margin: 2,
     backgroundColor: "#71A162",
-    borderRadius: 5
+    borderRadius: 5,
+    padding: 5
   },
 });
 
