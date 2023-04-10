@@ -26,7 +26,7 @@ function Test221({navigation}) {
   const [pressed1, setPressed1] = useState(false);
   const [pressed2, setPressed2] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
-  const [step, setStep] = useState('1');
+  const [step, setStep] = useState(1);
   // 1 - đang chọn, 2 - được, 3 - không được, 4 - hình ảnh 
   // lấy font SVN - Gotham
   const [fontsLoaded] = useFonts({
@@ -121,7 +121,7 @@ function Test221({navigation}) {
  
                 </View>
                 <TextGradient
-                  text={step === '1' ? 'Cơ' : step === '2' ? 'Xương' : ''}
+                  text={step === 1 ? 'Cơ' : (step === 2 ? 'Xương' : (step === 3 ? 'Khớp' : 'Đề kháng'))}
                   style={{ fontSize: 20, fontFamily: 'svnBold', textAlign: 'center' }}
                 />
                 <View style={{position: 'relative', width: '100%', height: '100%', borderRadius: 16, flex: 5}}>
