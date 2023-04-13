@@ -19,6 +19,7 @@ function Test224({navigation}) {
     const [checked, setChecked] = useState(true);
     const checkedImg = require('../assets/images/checked.png');
     const uncheckImg = require('../assets/images/uncheck.png');
+    const [xemThem, setXemThem] = useState(0);
     // lấy font SVN - Gotham
     const [fontsLoaded] = useFonts({
         'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
@@ -116,8 +117,11 @@ function Test224({navigation}) {
                     <Text style={styles.textS}>**Mỗi 5-7 năm sau khi mãn kinh. Nguồn: National Osteoporosis{'\n'}Foundation (2009). Hormones and Healthy Bones</Text>
                     <TextGradient text="LỰA CHỌN GIÚP CƠ-XƯƠNG-KHỚP CHẮC KHOẺ" style={{fontSize:14, fontFamily: 'svnBold'}}/>
                     <Text style={{fontFamily: 'svnGotham', fontSize: 13, color: 'white', textAlign: 'center'}}>Đừng chậm trễ, cùng Anlene giúp bạn chăm sóc sức khoẻ{'\n'} Cơ-Xương-Khớp ngay hôm nay với Ưu đãi hấp dẫn {'\n'}đang chờ bạn!</Text>
-                    <Pressable>
-                      <Text style={{fontFamily: 'svnGotham', color: '#ECD24A', borderBottomColor: '#ECD24A', borderBottomWidth: 1}}>Xem thêm</Text>
+                    <Pressable onPress={() => setXemThem(1)}>
+                      <Text style={{fontFamily: xemThem === 0 ? 'svnGotham' : 'svnLightItalic', textAlign: 'center', color: xemThem === 0 ? '#ECD24A' : 'white', borderBottomColor: xemThem === 0 ? '#ECD24A' : 'transparent', borderBottomWidth: 1}}>
+                        {xemThem === 0 ? 'Xem thêm'
+                        : '*Anlene 3 Khoẻ với công thức MovePro chứa các dưỡng chất Đạm, Canxi, Collagen cùng các Vitamin, Khoáng chất giúp Cơ-Xương-Khớp chắc khỏe và tăng sức đề kháng, cho bạn thoải mái vận động, tận hưởng cuộc sống.'}
+                      </Text>
                     </Pressable>
 
                     <View style={{margin: 20}}>
@@ -127,7 +131,7 @@ function Test224({navigation}) {
                                   style={styles.grediant}
                               >
                                   <TouchableOpacity style={styles.buttonContainer}
-                                      onPress = {()=> navigation.navigate('TestPage4')}
+                                      onPress = {()=> navigation.navigate('TestPage5')}
                                   >
                                       <Text style={styles.buttonText}>
                                           Nhận ngay

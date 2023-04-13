@@ -10,7 +10,6 @@ import { useCallback, useState, useEffect, onChangeText } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
-import formCheck from './formCheck';
 
 function Test223({navigation}) {
     const [Name, setName] = useState('');
@@ -146,7 +145,7 @@ function Test223({navigation}) {
                             </View>
                         </Pressable>
                         <View style={{flex: 1, justifyContent: 'center'}}>
-                            <TouchableOpacity style={styles.buttonContainer} onPress={()=> {formCheck; navigation.navigate('TestPage4')}}>
+                            <TouchableOpacity style={styles.buttonContainer} onPress={()=> {navigation.navigate('TestPage4')}}>
                                 <Text style={styles.buttonText}>HOÀN THÀNH</Text>
                             </TouchableOpacity>
                         </View>

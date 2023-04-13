@@ -115,11 +115,13 @@ const Test225 = ({navigation}) => {
                           </View>
                           
                           <View style={{alignItems: 'center', margin: 5}}>
-                            <TouchableOpacity style={[styles.buttonContainer]}>
+                            <TouchableOpacity style={[styles.buttonContainer]}
+                            onPress={() => navigation.navigate('TestPage6')}>
                               <Text style={styles.buttonText}>MUA NGAY</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={[styles.buttonContainer, {backgroundColor: 'white', borderColor: '#73A442', borderWidth: 2}]}>
+                            <TouchableOpacity style={[styles.buttonContainer, {backgroundColor: 'white', borderColor: '#73A442', borderWidth: 2}]}
+                            onPress={() => navigation.navigate('TestPage6')}>
                               <Text style={[styles.buttonText, {color: '#73A442', fontSize: 20}]}>Tìm hiểu ngay</Text>
                             </TouchableOpacity>
                             </View>

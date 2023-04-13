@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Pressable } from 'react-native';
 import {  SafeAreaView} from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -27,7 +26,83 @@ function Test221({navigation}) {
   const [pressed2, setPressed2] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [step, setStep] = useState(1);
-  // 1 - đang chọn, 2 - được, 3 - không được, 4 - hình ảnh 
+  // 0 chưa chọn 1 - đang chọn, 2 - được, 3 - không được, 4 - hình ảnh 
+  const [step1, setStep1] = useState(0);
+  const [step2, setStep2] = useState(0);
+  const [step3, setStep3] = useState(0);
+  const [step4, setStep4] = useState(0);
+  
+  const processImage = () => {
+    if (step === 1) {
+      if (activeIndex === null) {
+        setStep1(0)
+      }
+      else if (activeIndex === 0) {
+        setStep1(1)
+      }
+      else if (activeIndex === 1) {
+        setStep1(2)
+      }
+      else if (activeIndex === 2) {
+        setStep1(3)
+      }
+      else {
+        setStep1(4)
+      }
+    }
+    if (step === 2) {
+      if (activeIndex === null) {
+        setStep2(0)
+      }
+      else if (activeIndex === 0) {
+        setStep2(1)
+      }
+      else if (activeIndex === 1) {
+        setStep2(2)
+      }
+      else if (activeIndex === 2) {
+        setStep2(3)
+      }
+      else {
+        setStep2(4)
+      }
+    }
+    if (step === 3) {
+      if (activeIndex === null) {
+        setStep3(0)
+      }
+      else if (activeIndex === 0) {
+        setStep3(1)
+      }
+      else if (activeIndex === 1) {
+        setStep3(2)
+      }
+      else if (activeIndex === 2) {
+        setStep3(3)
+      }
+      else {
+        setStep3(4)
+      }
+    }
+    if (step === 4) {
+      if (activeIndex === null) {
+        setStep4(0)
+      }
+      else if (activeIndex === 0) {
+        setStep4(1)
+      }
+      else if (activeIndex === 1) {
+        setStep4(2)
+      }
+      else if (activeIndex === 2) {
+        setStep4(3)
+      }
+      else {
+        setStep4(4)
+      }
+    }
+  }
+
   // lấy font SVN - Gotham
   const [fontsLoaded] = useFonts({
     'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
@@ -89,7 +164,12 @@ function Test221({navigation}) {
                 <View style={{flex:1, backgroundColor: '#73A442', borderRadius: 12, flexDirection: 'row', alignItems: 'center'}}>
                 <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 15, paddingRight: 5}}>
                   <View style={{flexDirection: 'column', alignItems: 'center', zIndex: 1, elevation: 1}}>
-                    <Image style={styles.imageProgess} source={image1}></Image>
+                    <Image style={styles.imageProgess} source={
+                      step1 === 0? image1 :
+                      step1 === 2? image5 :
+                      step1 === 3? image6 : null
+                       }>
+                      </Image>
                     <Text style={styles.textProgess}>Cơ</Text>
                   </View>
                   
@@ -102,19 +182,37 @@ function Test221({navigation}) {
                   
                   
                   <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Image style={styles.imageProgess} source={image2}></Image>
+                      <Image style={styles.imageProgess} source={
+                      step2 === 0? image2 :
+                      step2 === 1? image1 :
+                      step2 === 2? image5 :
+                      step2 === 3? image6 : null
+                      }>
+                      </Image>
                     <Text style={styles.textProgess}>Xương</Text>
                   </View>
 
 
                   <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Image style={styles.imageProgess} source={image2}></Image>
+                      <Image style={styles.imageProgess} source={
+                      step3 === 0? image2 :
+                      step3 === 1? image1 :
+                      step3 === 2? image5 :
+                      step3 === 3? image6 : null
+                      }>
+                      </Image>
                     <Text style={styles.textProgess}>Khớp</Text>
                   </View>
 
              
                   <View style={{flexDirection: 'column', alignItems: 'center'}}>
-                    <Image style={styles.imageProgess} source={image2}></Image>
+                      <Image style={styles.imageProgess} source={
+                      step4 === 0? image2 :
+                      step4 === 1? image1 :
+                      step4 === 2? image5 :
+                      step4 === 3? image6 : null
+                      }>
+                      </Image>
                     <Text style={styles.textProgess}>Đề kháng</Text>
                   </View>
                 </View>
@@ -126,7 +224,7 @@ function Test221({navigation}) {
                 />
                 <View style={{position: 'relative', width: '100%', height: '100%', borderRadius: 16, flex: 5}}>
                   <Image style={{width: '100%', height: '100%', borderRadius: 16, borderColor: activeIndex === 1? '#73A442' : (activeIndex === 2 ? '#C6463A' : null) , borderWidth: 3}} source={step === 1? Images.imageCo : (step === 2? Images.imageXuong : (step === 3 ? Images.imageKhop : Images.imageDeKhang) ) } />
-                  <Image style={{position: 'absolute', top: -10, right: -12, width: 48, height: 48}} source={activeIndex === 1 ? image5 : (activeIndex === 2 ? image6 : null)} />
+                  <Image style={{position: 'absolute', top: -10, right: -12, width: 42, height: 42, backgroundColor: activeIndex ? 'white': 'transparent', borderRadius: 50}} source={activeIndex === 1 ? Images.imageBorderV : (activeIndex === 2 ? Images.imageBorderX : null)} />
                 </View>
                 <Text style={[styles.textTop, {textAlign: 'center', paddingTop: 10}]}>
                 Đứng rộng chân, lưng thẳng đứng,{'\n'}
@@ -135,12 +233,21 @@ function Test221({navigation}) {
                 <View style={{flex: 2}}>
                   <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', paddingTop: 15}}>
                   <Pressable
-                    onPress={() => {
-                      step <= 3 ? setActiveIndex(1) : null;
-                      step <= 4 ? setTimeout(() => {setActiveIndex(0), setStep(step + 1)}, 2000): null;
-                    }}
-                    style={{ paddingLeft: 20 }}
-                  >
+                      onPress={() => {
+                        step <= 4 ? setActiveIndex(1) : null;
+                        if (step === 1) {
+                          setTimeout(() => {setActiveIndex(0), setStep(step + 1), setStep1(2), setStep2(1)},  2000)
+                        } else if (step === 2) {
+                          setTimeout(() => {setActiveIndex(0), setStep(step + 1), setStep2(2), setStep3(1)}, 2000)
+                        } else if (step === 3) {
+                          setTimeout(() => {setActiveIndex(0), setStep(step + 1), setStep3(2), setStep4(1)}, 2000)
+                        }
+                        else if (step === 4) {
+                          setTimeout(() => {setStep(step + 1), setStep4(2)}, 2000)
+                        }
+                      }}
+                      style={{ paddingLeft: 20 }}
+                   >
                       <LinearGradient
                         start={[0, 0.5]}
                         end={[1, 0.5]}
@@ -160,15 +267,21 @@ function Test221({navigation}) {
                     </Pressable>
 
                     <Pressable
-                    onPress={() => {
-                      step <= 3 ? setActiveIndex(2) : null;
-                      step <= 4 ? setTimeout(() => {setActiveIndex(0), setStep(step + 1)}, 2000): null;
-                      
-                       
-                      //setTimeout(() => setActiveIndex(0), 1000);
-                    }}
-                    style={{ paddingLeft: 20 }}
-                  >
+                      onPress={() => {
+                        step <= 4 ? setActiveIndex(2) : null;
+                        if (step === 1) {
+                          setTimeout(() => {setActiveIndex(0), setStep(step + 1), setStep1(3), setStep2(1)},  2000)
+                        } else if (step === 2) {
+                          setTimeout(() => {setActiveIndex(0), setStep(step + 1), setStep2(3), setStep3(1)}, 2000)
+                        } else if (step === 3) {
+                          setTimeout(() => {setActiveIndex(0), setStep(step + 1), setStep3(3), setStep4(1)}, 2000)
+                        }
+                        else if (step === 4) {
+                          setTimeout(() => {setStep(step + 1), setStep4(3)}, 2000)
+                        }
+                      }}
+                      style={{ paddingLeft: 20 }}
+                    >
                       <LinearGradient
                         start={[0, 0.5]}
                         end={[1, 0.5]}
@@ -189,11 +302,11 @@ function Test221({navigation}) {
                   </View>
                 </View>
                 <View style={{flex: 2}}>
-                  <TouchableOpacity style={{alignSelf: 'center', width: '50%', backgroundColor: '#B8B8B8', paddingLeft: 30, paddingRight: 30, paddingTop: 10, paddingBottom: 10, borderRadius: 30}}
+                  <TouchableOpacity disabled={step ===5 ? false : true} style={{alignSelf: 'center', width: '50%', backgroundColor: step === 5? '#B70002' : '#B8B8B8', paddingLeft: 30, paddingRight: 30, paddingTop: 10, paddingBottom: 10, borderRadius: 30}}
                   onPress={() => navigation.navigate('TestPage3')}>
                     <Text style={{textAlign: 'center', fontSize: 16, fontFamily: 'svnGotham', color: 'white'}}>XÁC NHẬN</Text>
                   </TouchableOpacity>
-                  <Text style={{textAlign: 'center', fontFamily: 'svnLightItalic', color: 'white'}}>{step}*Lưu ý: Hãy dừng bài tập ngay nếu cảm thấy không thoải mái. {'\n'}Đảm bảo vị trí tập an toàn để không té ngã.</Text>
+                  <Text style={{textAlign: 'center', fontFamily: 'svnLightItalic', color: 'white'}}>*Lưu ý: Hãy dừng bài tập ngay nếu cảm thấy không thoải mái. {'\n'}Đảm bảo vị trí tập an toàn để không té ngã.</Text>
                 </View>
             </SafeAreaView>
         </LinearGradient>
@@ -215,7 +328,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   imageProgess: {
-    width: 30, height: 30
+    width: 30, height: 30,
+    backgroundColor: '#73A442',
+    borderRadius: 50
   },
  
   circleGradient: {

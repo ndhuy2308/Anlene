@@ -12,7 +12,12 @@ import GroupButton from '../assets/svg/3button.svg';
 import Logo from '../assets/svg/logo.svg';
 import TextGradient from './TextGradient';
 
-const Test222 = ({navigation}) => {
+
+
+//<GroupButton style={{alignSelf: 'center'}}></GroupButton> <Logo width="66.5" height="17.75" />
+
+
+function Test222({navigation}) {
 
     const [fontsLoaded] = useFonts({
         'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
@@ -56,7 +61,7 @@ const Test222 = ({navigation}) => {
                                             <AntDesign name="right" size={14} color="white" />
                                         </View>
                                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                            <Logo width="66.5" height="17.75" />
+                                            
                                         </View>
                                     </View>
                                 </View>
@@ -87,7 +92,7 @@ const Test222 = ({navigation}) => {
                                 style={styles.grediant}
                             >
                                 <TouchableOpacity style={styles.buttonContainer}
-                                    onPress = {()=> navigation.navigate('TestPage2')}
+                                    onPress = {()=> navigation.navigate('TestPage7')}
                                 >
                                     <Text style={styles.buttonText}>
                                         KIỂM TRA NGAY
@@ -95,7 +100,7 @@ const Test222 = ({navigation}) => {
                                 </TouchableOpacity>
                             </LinearGradient>
                             <View style={{padding:5}}></View>
-                            <GroupButton style={{alignSelf: 'center'}}></GroupButton>
+                            
                             <View style={{alignItems:'center', paddingLeft: 10, paddingRight: 10}}>
                                 <Text style={styles.TextBottom}>Bài kiểm tra Cơ, Xương, Khớp này được phát triển bởi đội ngũ Anlene</Text>
                                 <Text style={[styles.TextBottom, {marginLeft: 20, marginRight: 20, paddingBottom: 5}]}>Lưu ý: Bài kiểm tra không dành cho đối tượng đang bị chấn thương hoặc có bệnh lý về cơ, xương, khớp hoặc tiểu đường</Text>
