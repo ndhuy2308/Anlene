@@ -2,14 +2,15 @@ import React, { createContext, useReducer } from "react";
 
 // Khởi tạo giá trị ban đầu cho context
 const initialState = {
-  id: 1,
-  name: "Nguyen Duc Huy",
+  name: "Name",
   phoneNumber: "0929294316",
-  email: "huypero114@gmail.com",
-  Co: true,
-  Xuong: false,
-  Khop: true,
-  DeKhang: false
+  email: "huy@gmail.com",
+  Co: -1,
+  Xuong: -1,
+  Khop: -1,
+  DeKhang: -1,
+  Follow: false,
+  KetQua: 0 // 1 - Xanh lá, 2 - Vàng, 3 - Xám
 };
 
 // Khởi tạo Context và Provider

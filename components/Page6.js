@@ -1,26 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Pressable, ScrollView } from 'react-native';
 import {  SafeAreaView} from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Image} from 'react-native';
 import { useCallback, useState, useEffect } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
-import DuocWhite from '../assets/svg/duoc_white.svg';
-import KhongDuocWhite from '../assets/svg/khongduoc_white.svg';
-import Images from "../assets/images";
-import TextGradient from './TextGradient';
+
 const image1 = require('../assets/images/o.png');
 const image2 = require('../assets/images/x.png');
 const image3 = require('../assets/images/3.png');
 const image4 = require('../assets/images/4.png');
 
-function Test221({navigation}) {
+function Page6({navigation}) {
   const [pressed1, setPressed1] = useState(false);
   const [pressed2, setPressed2] = useState(false);
   const [index, setIndex] = useState(5);
@@ -56,7 +50,7 @@ function Test221({navigation}) {
                 <View style={{flexDirection: 'row'}}>
                     <View style={{flexDirection: 'row', flex: 2, alignSelf:'center'}}>
                         <View style={{flex: 1,flexDirection: 'row', justifyContent: 'flex-start', alignSelf: 'center'}}>
-                        <TouchableOpacity style={{paddingRight: 20}} onPress={() => navigation.navigate("TestPage5")}>
+                        <TouchableOpacity style={{paddingRight: 20}} onPress={() => navigation.navigate("Page5")}>
                             <Entypo name="chevron-thin-left" size={24} color="white" />
                         </TouchableOpacity>
                         
@@ -124,4 +118,4 @@ const styles = StyleSheet.create({
 
 
 
-export default Test221;
+export default Page6;

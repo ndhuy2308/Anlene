@@ -1,61 +1,58 @@
-import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, StyleSheet, ScrollView, Text, View, TouchableOpacity, Pressable, TextInput, Image, Button, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import {  SafeAreaView} from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useCallback, useState, useEffect, onChangeText } from 'react';
+import { useCallback, useState, useContext } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
-import TextGradient from './TextGradient';
+import { ApplicationContext } from './AppContext';
+import Images from "../assets/images";
+function Page4({navigation}) {
+  const { state, dispatch } = useContext(ApplicationContext);
+  const [xemThem, setXemThem] = useState(0);
+  // lấy font SVN - Gotham
+  const [fontsLoaded] = useFonts({
+      'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
+      'svnLight': require('../assets/fonts/svn_gotham_light.ttf'),
+      'svnLightItalic': require('../assets/fonts/svn_gotham_light_italic.otf'),
+      'svnGotham': require('../assets/fonts/svn_gotham.otf'),
+  });
+  
+  const onLayoutRootView = useCallback(async () => {
+      if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+      }
+  }, [fontsLoaded]);
 
-function Test224({navigation}) {
-    const FullNameError= '';
-    const PhoneNumberError = '';
-    const EmailError = '';
-    const [checked, setChecked] = useState(true);
-    const checkedImg = require('../assets/images/checked.png');
-    const uncheckImg = require('../assets/images/uncheck.png');
-    const [xemThem, setXemThem] = useState(0);
-    // lấy font SVN - Gotham
-    const [fontsLoaded] = useFonts({
-        'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
-        'svnLight': require('../assets/fonts/svn_gotham_light.ttf'),
-        'svnLightItalic': require('../assets/fonts/svn_gotham_light_italic.otf'),
-        'svnGotham': require('../assets/fonts/svn_gotham.otf'),
-    });
-    
-    const onLayoutRootView = useCallback(async () => {
-        if (fontsLoaded) {
-        await SplashScreen.hideAsync();
-        }
-    }, [fontsLoaded]);
-
-    if (!fontsLoaded) {
-        return null;
-    }
-    else{
-        SplashScreen.hideAsync();
-    }
+  if (!fontsLoaded) {
+      return null;
+  }
+  else{
+      SplashScreen.hideAsync();
+  }
 
     return (
-    <View
+    <LinearGradient
+      colors={[
+        state.KetQua >= 3 ? '#969696' : (state.KetQua >=1) ? '#FD9500' : 'green',
+        state.KetQua >= 3 ? '#969696' : (state.KetQua >=1) ? '#FEBF00' : 'green',
+        state.KetQua >= 3 ? '#969696' : (state.KetQua >=1) ? '#FB8402' : 'green'
+      ]}
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 1}}
+      style={{flex: 1}}>
+    <ScrollView
         style={styles.container}
     > 
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <LinearGradient
-          colors={['#969696', '#969696']}
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 1}}
-          style={{flex: 1}}>
+      
             <SafeAreaView style={{flex: 1, paddingLeft: 20, paddingRight: 20}}>
                 <View style={{flexDirection: 'row'}}>
                     <View style={{flexDirection: 'row', flex: 2, alignSelf:'center'}}>
                         <View style={{flex: 1,flexDirection: 'row', justifyContent: 'flex-start', alignSelf: 'center'}}>
-                        <TouchableOpacity style={{paddingRight: 20}} onPress={() => navigation.navigate("TestPage3")}>
+                        <TouchableOpacity style={{paddingRight: 20}} onPress={() => navigation.navigate("Page3")}>
                             <Entypo name="chevron-thin-left" size={24} color="white" />
                         </TouchableOpacity>
                         
@@ -111,11 +108,18 @@ function Test224({navigation}) {
                         </View>
                       </View>
                     </View>
+                    <Text style={{color: 'white', fontFamily: 'svnGotham', textAlign: 'center', alignSelf: 'center', padding: 5}}>
+                     {state.KetQua >= 3 ? 'Bạn có thể sẽ phải đối mặt với những cơn đau nhức mỏi thường xuyên, gây khó khăn trong vận động và sinh hoạt hằng ngày.' 
+                     : (state.KetQua >=1) ? 'Rào cản vận động này có thể mang đến những cơn đau nhức mỏi không mong muốn.' 
+                     : 'Tác động này có thể tạo ra những cơn đau nhức mỏi ảnh hưởng đến vận động hằng ngày.'}
+                    </Text>
                   <View style={{alignItems: 'center'}}>
-                    <Image source={require('../assets/images/4-golden.png')}></Image>
+                    <Image source={state.KetQua >= 3 ? Images.Golden4 : (state.KetQua >=1 ? Images.Green4 : Images.Golden4)}></Image>
                     <Text style={styles.textS}>*Mỗi 10 năm. Nguồn: Daly et al., 2013. BMC Geriatrics 13:71</Text>
                     <Text style={styles.textS}>**Mỗi 5-7 năm sau khi mãn kinh. Nguồn: National Osteoporosis{'\n'}Foundation (2009). Hormones and Healthy Bones</Text>
-                    <TextGradient text="LỰA CHỌN GIÚP CƠ-XƯƠNG-KHỚP CHẮC KHOẺ" style={{fontSize:14, fontFamily: 'svnBold'}}/>
+                    <Text style={[styles.shadow, {color: state.KetQua >= 3 ? '#FFC200' : (state.KetQua >=1) ? '#187B33' : '#FFC200', fontFamily: 'svnBold', fontSize: 14, textAlign: 'center'}]}>
+                      LỰA CHỌN GIÚP CƠ-XƯƠNG-KHỚP CHẮC KHOẺ
+                    </Text>
                     <Text style={{fontFamily: 'svnGotham', fontSize: 13, color: 'white', textAlign: 'center'}}>Đừng chậm trễ, cùng Anlene giúp bạn chăm sóc sức khoẻ{'\n'} Cơ-Xương-Khớp ngay hôm nay với Ưu đãi hấp dẫn {'\n'}đang chờ bạn!</Text>
                     <Pressable onPress={() => setXemThem(1)}>
                       <Text style={{fontFamily: xemThem === 0 ? 'svnGotham' : 'svnLightItalic', textAlign: 'center', color: xemThem === 0 ? '#ECD24A' : 'white', borderBottomColor: xemThem === 0 ? '#ECD24A' : 'transparent', borderBottomWidth: 1}}>
@@ -130,11 +134,11 @@ function Test224({navigation}) {
                                   start={{ x: 0.0, y: 1.0 }} end={{ x: 1.0, y: 1.0 }}
                                   style={styles.grediant}
                               >
-                                  <TouchableOpacity style={styles.buttonContainer}
-                                      onPress = {()=> navigation.navigate('TestPage5')}
+                                  <TouchableOpacity style={[styles.buttonContainer, styles.shadow]}
+                                      onPress = {()=> navigation.navigate('Page5')}
                                   >
                                       <Text style={styles.buttonText}>
-                                          Nhận ngay
+                                          {state.KetQua >= 3 ? 'NHẬN NGAY' : 'MUA NGAY'}
                                       </Text>
                                   </TouchableOpacity>
                         </LinearGradient>
@@ -142,9 +146,10 @@ function Test224({navigation}) {
                   </View>
                 </View>
             </SafeAreaView>
-        </LinearGradient>
+        
         </TouchableWithoutFeedback>
-        </View>
+        </ScrollView>
+        </LinearGradient>
   );
 }
 
@@ -205,7 +210,8 @@ const styles = StyleSheet.create({
   textS: {
     fontSize: 11,
     fontFamily: 'svnLightItalic',
-    color: 'white'
+    color: 'white',
+    textAlign: 'center'
   },
   buttonText: {
     textAlign: 'center',
@@ -237,6 +243,17 @@ const styles = StyleSheet.create({
     paddingLeft: 22, paddingRight: 22,
     paddingTop:4, paddingBottom:4
   },
+  shadow: {
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 40,
+    },
+    shadowOpacity: 0.7,
+    shadowRadius: 10,
+    
+    elevation: 11,
+  }
   
   
 
@@ -244,4 +261,4 @@ const styles = StyleSheet.create({
 
 
 
-export default Test224;
+export default Page4;

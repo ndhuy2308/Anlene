@@ -1,20 +1,16 @@
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import {  SafeAreaView} from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons'; 
-import GroupButton from '../assets/svg/3button.svg';
-import Logo from '../assets/svg/logo.svg';
 import { Entypo } from '@expo/vector-icons'; 
 import MaskedView from '@react-native-masked-view/masked-view';
 import TextGradient from './TextGradient';
 
-const Test225 = ({navigation}) => {
+const Page5 = ({navigation}) => {
 
     const [fontsLoaded] = useFonts({
         'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
@@ -44,11 +40,11 @@ const Test225 = ({navigation}) => {
                     <LinearGradient colors={['#0E470E', '#20680D', '#2E820D', '#13500E', 'transparent']} 
                                     start={{ x: 1.0, y: 0.0 }} end={{ x: 1.0, y: 0.52 }}
                                     style={{flex: 1 }}>
-                        <SafeAreaView style={{paddingLeft: 10, paddingRight: 10}}>
+                        <SafeAreaView style={{paddingLeft: 20, paddingRight: 20}}>
                           <View style={{flexDirection: 'row'}}>
                             <View style={{flexDirection: 'row', flex: 2, alignSelf:'center'}}>
                                 <View style={{flex: 1,flexDirection: 'row', justifyContent: 'flex-start', alignSelf: 'center'}}>
-                                <TouchableOpacity style={{paddingRight: 20}} onPress={() => navigation.navigate("TestPage4")}>
+                                <TouchableOpacity style={{paddingRight: 20}} onPress={() => navigation.navigate("Page4")}>
                                     <Entypo name="chevron-thin-left" size={24} color="white" />
                                 </TouchableOpacity>
                                 
@@ -88,13 +84,13 @@ const Test225 = ({navigation}) => {
                 <View style={{flex: 1, justifyContent: 'flex-end'}}>
                     <LinearGradient
                     colors={['transparent', '#0E470E', '#20680D', '#2E820D', '#13500E']}
-                    start={{ x: 0.0, y: 0.32 }} end={{ x: 0.0, y: 1.0 }}
+                    start={{ x: 0.0, y: 0.2 }} end={{ x: 0.0, y: 1.0 }}
                     style={{ flex: 1}}
                     >
                         <SafeAreaView style={{flex: 1, justifyContent: 'flex-end', alignSelf: 'center'}}>
-                          <View style={{borderColor: 'white', borderWidth: 1, borderRadius: 7, width: '70%', alignSelf: 'center'}}>
+                          <View style={{borderColor: 'white', borderWidth: 1, borderRadius: 7, width: '80%', alignSelf: 'center'}}>
                             <View style={{flexDirection: 'column'}}>
-                              <View style={{backgroundColor: 'white', padding: 15, alignItems: 'center'}}>
+                              <View style={{backgroundColor: 'white', paddingLeft: '10%', paddingRight: '10%', paddingTop: '5%', paddingBottom: '5%', alignItems: 'center'}}>
                                 <Text style={{color: '#73A442', fontFamily: 'svnBold', fontSize: 15}}>MÃ GIẢM GIÁ</Text>
                                 <Text style={{color: '#478449', fontFamily: 'svnBold', fontSize: 16}}>ANLENANMUMW88YQI</Text>
                               </View>
@@ -115,13 +111,13 @@ const Test225 = ({navigation}) => {
                           </View>
                           
                           <View style={{alignItems: 'center', margin: 5}}>
-                            <TouchableOpacity style={[styles.buttonContainer]}
-                            onPress={() => navigation.navigate('TestPage6')}>
+                            <TouchableOpacity style={[styles.buttonContainer, styles.shadow]}
+                            onPress={() => navigation.navigate('Page6')}>
                               <Text style={styles.buttonText}>MUA NGAY</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity style={[styles.buttonContainer, {backgroundColor: 'white', borderColor: '#73A442', borderWidth: 2}]}
-                            onPress={() => navigation.navigate('TestPage6')}>
+                            onPress={() => navigation.navigate('Page6')}>
                               <Text style={[styles.buttonText, {color: '#73A442', fontSize: 20}]}>Tìm hiểu ngay</Text>
                             </TouchableOpacity>
                             </View>
@@ -165,8 +161,18 @@ const styles = StyleSheet.create({
       fontFamily: 'svnBold',
       textAlign: 'center'
     },
-
+    shadow: {
+      shadowColor: "black",
+      shadowOffset: {
+        width: 0,
+        height: 40,
+      },
+      shadowOpacity: 0.7,
+      shadowRadius: 10,
+      
+      elevation: 11,
+    }
   
       
 });
-export default Test225;
+export default Page5;

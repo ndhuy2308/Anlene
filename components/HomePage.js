@@ -8,16 +8,14 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { AntDesign } from '@expo/vector-icons'; 
-import GroupButton from '../assets/svg/3button.svg';
-import Logo from '../assets/svg/logo.svg';
 import TextGradient from './TextGradient';
-
+import Images from "../assets/images";
 
 
 //<GroupButton style={{alignSelf: 'center'}}></GroupButton> <Logo width="66.5" height="17.75" />
 
 
-function Test222({navigation}) {
+function HomePage({navigation}) {
 
     const [fontsLoaded] = useFonts({
         'svnBold': require('../assets/fonts/svn_gotham_bold.ttf'),
@@ -61,7 +59,7 @@ function Test222({navigation}) {
                                             <AntDesign name="right" size={14} color="white" />
                                         </View>
                                         <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                                            
+                                            <Image source={Images.LogoAnlene} style={{width: 66.5, height: 17.75}}/>
                                         </View>
                                     </View>
                                 </View>
@@ -92,7 +90,7 @@ function Test222({navigation}) {
                                 style={styles.grediant}
                             >
                                 <TouchableOpacity style={styles.buttonContainer}
-                                    onPress = {()=> navigation.navigate('TestPage7')}
+                                    onPress = {()=> navigation.navigate('Page2')}
                                 >
                                     <Text style={styles.buttonText}>
                                         KIỂM TRA NGAY
@@ -100,7 +98,7 @@ function Test222({navigation}) {
                                 </TouchableOpacity>
                             </LinearGradient>
                             <View style={{padding:5}}></View>
-                            
+                            <Image style={{alignSelf: 'center'}} source={Images.GroupPage1} />
                             <View style={{alignItems:'center', paddingLeft: 10, paddingRight: 10}}>
                                 <Text style={styles.TextBottom}>Bài kiểm tra Cơ, Xương, Khớp này được phát triển bởi đội ngũ Anlene</Text>
                                 <Text style={[styles.TextBottom, {marginLeft: 20, marginRight: 20, paddingBottom: 5}]}>Lưu ý: Bài kiểm tra không dành cho đối tượng đang bị chấn thương hoặc có bệnh lý về cơ, xương, khớp hoặc tiểu đường</Text>
@@ -143,6 +141,17 @@ const styles = StyleSheet.create({
     paddingLeft: 22, paddingRight: 22,
     paddingTop:4, paddingBottom:4
     },
+    shadow: {
+        shadowColor: "black",
+        shadowOffset: {
+          width: 0,
+          height: 40,
+        },
+        shadowOpacity: 0.7,
+        shadowRadius: 10,
+        
+        elevation: 11,
+      }
       
 });
-export default Test222;
+export default HomePage;
