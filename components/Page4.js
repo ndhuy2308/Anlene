@@ -79,7 +79,14 @@ function Page4({navigation}) {
                 </View>
                 <View style={styles.container}>
                     <Image source={require('../assets/images/logo.png')} style={{width: 116.6, height: 28.4, resizeMode: 'contain', alignSelf: 'center', marginBottom: 10}}></Image>
-                    <Text style={{fontFamily: 'svnBold', color: '#DF1E13', fontSize: 26,  textAlign: 'center'}}>HÃY CẨN THẬN</Text>
+                    <Text style={{fontFamily: 'svnBold', color: state.KetQua >= 3 ? '#DF1E13' : (state.KetQua >=1) ? '#187B33' : '#ECD24A', fontSize: 17,  textAlign: 'center'}}>
+                      HOÀN THÀNH BÀI KIỂM TRA
+                      </Text>
+                    <Text style={{fontFamily: 'svnBold', color: state.KetQua >= 3 ? '#DF1E13' : (state.KetQua >=1) ? '#187B33' : '#ECD24A', fontSize: 26,  textAlign: 'center'}}>
+                      {state.KetQua >= 3 ? 'LƯU Ý MỘT CHÚT' 
+                      : (state.KetQua >=1) ? 'LƯU Ý MỘT CHÚT' 
+                      : 'XIN CHÚC MỪNG'}
+                      </Text>
                     <Text style={{flexShrink: 1, textAlign: 'center', fontFamily: 'svnGotham', fontSize: 13, color: 'white'}}>Tuy rằng có vẻ bạn đang có đề kháng tốt nhưng{'\n'} cần quan tâm đến hệ vận động nhiều hơn nhé,{'\n'}
                     bởi sau tuổi 40, sức khoẻ Cơ-Xương-Khớp{'\n'}
                     suy giảm:</Text>
@@ -119,10 +126,12 @@ function Page4({navigation}) {
                     <Text style={styles.textS}>**Mỗi 5-7 năm sau khi mãn kinh. Nguồn: National Osteoporosis{'\n'}Foundation (2009). Hormones and Healthy Bones</Text>
                     <Text style={[styles.shadow, {color: state.KetQua >= 3 ? '#FFC200' : (state.KetQua >=1) ? '#187B33' : '#FFC200', fontFamily: 'svnBold', fontSize: 14, textAlign: 'center'}]}>
                       LỰA CHỌN GIÚP CƠ-XƯƠNG-KHỚP CHẮC KHOẺ
-                    </Text>
+                    </Text>                                                                   
                     <Text style={{fontFamily: 'svnGotham', fontSize: 13, color: 'white', textAlign: 'center'}}>Đừng chậm trễ, cùng Anlene giúp bạn chăm sóc sức khoẻ{'\n'} Cơ-Xương-Khớp ngay hôm nay với Ưu đãi hấp dẫn {'\n'}đang chờ bạn!</Text>
                     <Pressable onPress={() => setXemThem(1)}>
-                      <Text style={{fontFamily: xemThem === 0 ? 'svnGotham' : 'svnLightItalic', textAlign: 'center', color: xemThem === 0 ? '#ECD24A' : 'white', borderBottomColor: xemThem === 0 ? '#ECD24A' : 'transparent', borderBottomWidth: 1}}>
+                      <Text style={{fontFamily: xemThem === 0 ? 'svnGotham' : 'svnLightItalic', textAlign: 'center',
+                      color: xemThem === 1 ? 'white' : xemThem === 0 && state.KetQua >=3 || state.KetQua < 1? '#ECD24A' : xemThem === 0 && state.KetQua >=1 && state.KetQua <3 ? '#187B33' : '#187B33'
+                    }}>
                         {xemThem === 0 ? 'Xem thêm'
                         : '*Anlene 3 Khoẻ với công thức MovePro chứa các dưỡng chất Đạm, Canxi, Collagen cùng các Vitamin, Khoáng chất giúp Cơ-Xương-Khớp chắc khỏe và tăng sức đề kháng, cho bạn thoải mái vận động, tận hưởng cuộc sống.'}
                       </Text>

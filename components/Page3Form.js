@@ -221,7 +221,9 @@ function Page3Form({navigation}) {
                           fontFamily: 'svnBold',
                           color: state.KetQua >= 3 ? '#DF1E13' : (state.KetQua >=1) ? '#187B33' : '#ECD24A',
                           fontSize: 26, textAlign: 'center'}}>
-                            LƯU Ý MỘT CHÚT!
+                            {state.KetQua >= 3 ? 'LƯU Ý MỘT CHÚT' 
+                            : (state.KetQua >=1) ? 'LƯU Ý MỘT CHÚT' 
+                            : 'XIN CHÚC MỪNG'}
                         </Text>
 
                         <Text style={{textAlign: 'center', fontFamily: 'svnBold', color: 'white', fontSize: 14, lineHeight: 22, textAlign: 'center', paddingLeft: '5%', paddingRight: '5%'}}>
