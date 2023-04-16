@@ -5,7 +5,7 @@ ID: Tạo dựa trên ngày, tháng, năm, giờ hiện tại để đảm bảo
     + Email (không bắt buộc)
     + Các chức năng: Cơ, Xương, Khớp, Đề Kháng: 
         Có 3 giá trị:
-        -1 (có nghĩa là không lưu kết quả kiểm tra sức khoẻ)
+        -1 (có nghĩa là không lưu kết quả kiểm tra sức khoẻ)<br>
         2 (có nghĩa là được/ hiếm khi)
         3 (có nghĩa là không được/ thường xuyên)
 -----------
