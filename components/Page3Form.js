@@ -285,7 +285,7 @@ function Page3Form({navigation}) {
                               {[styles.buttonContainer1, styles.shadow,
                               {backgroundColor: Name && Number? '#B70002' : '#B8B8B8' }]} 
                             onPress={()=> {submitCheckForm()}}>
-                                <Text style={[styles.buttonText1]}>{state.Follow ? 'true' : 'false'}HOÀN THÀNH</Text>
+                                <Text style={[styles.buttonText1]}>HOÀN THÀNH</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
