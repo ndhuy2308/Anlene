@@ -75,9 +75,7 @@ function Page3Form({navigation}) {
               date.getDate().toString().padStart(2, "0") +
               date.getSeconds().toString().padStart(2, "0");
       wid = id;
-      wName = state.name;
       wPhoneNumber = state.phoneNumber;
-      wEmail = state.email;
       if (remove === -1) {
         wCo = -1;
         wXuong = -1;
@@ -93,9 +91,9 @@ function Page3Form({navigation}) {
       
       wFollow = state.Follow;
       set(ref(database, 'results/' + wid), {
-          name: wName,
+          name: state.name,
           PhoneNumber : wPhoneNumber,
-          Email : wEmail,
+          Email : state.email,
           Co : wCo,
           Xuong : wXuong,
           Khop: wKhop,
