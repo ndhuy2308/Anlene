@@ -41,7 +41,7 @@ function Page3Form({navigation}) {
           setImageSource(require('../assets/images/uncheck.png'));
         }
         setisChecked(!isChecked);
-        
+        dispatch(updateFollow(isChecked));
       };
     const submitCheckForm = () => {
       const isValidName = verifyName(Name);
@@ -152,7 +152,7 @@ function Page3Form({navigation}) {
               <View style={{flexDirection: 'row', padding: 10}}>
                 <TouchableOpacity
                   style={[styles.buttonContainer, {backgroundColor: 'white', borderColor: '#B70002', borderWidth: 3}]}
-                  onPress={() => {submitHandlePress();}}
+                  onPress={() => {submitHandlePress(0);}}
                   >
                   <Text style={[styles.buttonText, {color: '#B70002'}]}>HUỶ</Text>
                 </TouchableOpacity>
@@ -285,7 +285,7 @@ function Page3Form({navigation}) {
                               {[styles.buttonContainer1, styles.shadow,
                               {backgroundColor: Name && Number? '#B70002' : '#B8B8B8' }]} 
                             onPress={()=> {submitCheckForm()}}>
-                                <Text style={[styles.buttonText1]}>HOÀN THÀNH</Text>
+                                <Text style={[styles.buttonText1]}>{state.Follow ? 'true' : 'false'}HOÀN THÀNH</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
